@@ -41,10 +41,10 @@ function atacar(tipo) {
 
   let dano = 0;
 
-  if (tipo === 'planta') {
+  if (tipo === 'latigo') {
     dano = 10;
     reproducirSonido('latigo');
-  } else if (tipo === 'fuego') {
+  } else if (tipo === 'llama') {
     dano = 20;
     reproducirSonido('llama');
   } else if (tipo === 'rayo') {
@@ -65,15 +65,8 @@ function curar() {
   actualizarBarraVida();
 }
 
-const botonReturn = document.createElement('button');
-botonReturn.innerHTML = '<img src="img/return.png" alt="Return Game">';
-botonReturn.classList.add('return-button'); // usa el estilo del CSS
-botonReturn.onclick = () => {
+function reiniciarJuego() {
   vida = 100;
   actualizarBarraVida();
   gameOver.style.display = 'none';
-};
-
-gameOver.appendChild(botonReturn);
-
-actualizarBarraVida();
+}
