@@ -41,12 +41,12 @@ function atacar(tipo) {
 
   let dano = 0;
 
-  if (tipo === 'planta') {
+  if (tipo === 'latigo') {
     dano = 10;
-    reproducirSonido('planta');
-  } else if (tipo === 'fuego') {
+    reproducirSonido('latigo');
+  } else if (tipo === 'llama') {
     dano = 20;
-    reproducirSonido('fuego');
+    reproducirSonido('llama');
   } else if (tipo === 'rayo') {
     dano = 15;
     reproducirSonido('rayo');
@@ -61,7 +61,7 @@ function curar() {
 
   const curacion = 20;
   vida += curacion;
-  reproducirSonido('curar');
+  reproducirSonido('elixir');
   actualizarBarraVida();
 }
 
