@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body, html {
+    font-family: sans-serif;
+    background-color: #f2f2f2;
+}
+  
+.fondo {
+    background-image: url('img/fondo.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+  
+.juego {
+    width: 95%;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    text-align: center;
+}
+  
+.personaje {
+    border-radius: 10%;
+    width: 200px;
+    height: auto;
+}
+  
+.barra-contenedor {
+    width: 100%;
+    max-width: 600px;
+    height: 25px;
+    background: transparent; 
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none; 
+}
+  
+.barra-vida {
+    height: 100%;
+    background-color: red;
+    width: 100%;
+    transition: width 0.3s ease;
+}
+  
+#vidaTexto {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+  
+.ataques, .curar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+  
+.accion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+}
+  
+.ataques img, .curar img {
+    width: 70px;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+  
+.ataques img:hover, .curar img:hover {
+    transform: scale(1.1);
+}
+  
+.ataques p, .curar p {
+    margin: 5px 0 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    white-space: normal; 
+    overflow: visible;
+    text-overflow: unset;
+}
+  
+.game-over {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+  
+.game-over img {
+    width: 80%;
+    max-width: 600px;
+}
+
+#btn-reiniciar {
+    margin-top: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#btn-reiniciar img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    transition: transform 0.2s ease;
+}
+
+#btn-reiniciar img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .juego {
+        padding: 20px;
+    }
+
+    .personaje {
+        width: 160px;
+    }
+
+    #vidaTexto {
+        font-size: 18px;
+    }
+
+    .accion {
+        width: 90px;
+    }
+
+    .ataques img, .curar img {
+        width: 60px;
+    }
+
+    .ataques p, .curar p {
+        font-size: 13px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .juego {
+        padding: 15px;
+    }
+
+    .personaje {
+        width: 140px;
+    }
+
+    #vidaTexto {
+        font-size: 16px;
+    }
+
+    .accion {
+        width: 80px;
+    }
+
+    .ataques img, .curar img {
+        width: 50px;
+    }
+
+    .ataques p, .curar p {
+        font-size: 12px;
+        width: 100%;
+    }
+}
+  
+  
+  

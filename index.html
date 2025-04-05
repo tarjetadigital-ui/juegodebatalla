@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juego de Batalla</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="img/icono.jpg" type="image/png" />
+</head>
+<body>
+  <div class="fondo">
+    <div class="juego">
+      <img src="img/personaje.jpg" alt="Personaje" class="personaje" />
+      
+      <div class="barra-contenedor">
+        <div id="barra-vida" class="barra-vida"></div>
+      </div>
+      <div id="vidaTexto">Vida: 100</div>
+
+      <div class="ataques">
+        <div class="accion">
+          <img src="img/planta.jpg" alt="Látigo Verde" onclick="atacar('latigo')" />
+          <p>Látigo Verde</p>
+        </div>
+        <div class="accion">
+          <img src="img/fuego.jpg" alt="Llamarada Infernal" onclick="atacar('llama')" />
+          <p>Llamarada Infernal</p>
+        </div>
+        <div class="accion">
+          <img src="img/rayo.jpg" alt="Descarga Salvaje" onclick="atacar('rayo')" />
+          <p>Descarga Salvaje</p>
+        </div>
+      </div>
+
+      <div class="curar">
+        <div class="accion">
+          <img src="img/copa.jpg" alt="Elixir de Vida" onclick="curar()" />
+          <p>Elixir de Vida</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-over" class="game-over">
+    <div style="text-align: center;">
+      <img src="img/game over.jpg" alt="Game Over">
+      <button id="btn-reiniciar" onclick="reiniciarJuego()">
+        <img src="img/return.jpg" alt="Reiniciar Juego">
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
