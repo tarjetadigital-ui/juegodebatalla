@@ -1,78 +1,89 @@
 let vida = 100;
-const barraVida = document.getElementById("barra-vida");
-const textoVida = document.getElementById("texto-vida");
-const mensajeFinal = document.getElementById("mensaje-final");
-const botonReiniciar = document.getElementById("boton-reiniciar");
+const barraVida = document.getElementById('barra-vida');
+const vidaTexto = document.getElementById('vidaTexto');
+const gameOver = document.getElementById('game-over');
 
-const botonLatigo = document.getElementById("latigo");
-const botonFuego = document.getElementById("fuego");
-const botonRayo = document.getElementById("rayo");
-const botonElixir = document.getElementById("elixir");
+const sonidos = {
+  planta: new Audio('sonidos/latigo.mp3'),
+  fuego: new Audio('sonidos/llama.mp3'),
+  rayo: new Audio('sonidos/rayo.mp3'),
+  curar: new Audio('sonidos/elixir.mp3'),
+};
 
-let sonidoLatigo = new Audio("sonidos/latigo.mp3");
-let sonidoFuego = new Audio("sonidos/fuego.mp3");
-let sonidoRayo = new Audio("sonidos/rayo.mp3");
-let sonidoElixir = new Audio("sonidos/elixir.mp3");
-let sonidoGameOver = new Audio("sonidos/gameover.mp3");
+function reproducirSonido(sonido) {
+  if (sonidos[sonido]) {
+    sonidos[sonido].pause();
+    sonidos[sonido].currentTime = 0;
+    sonidos[sonido].play();
 
-function cambiarVida(cantidad) {
-  if (vida <= 0) return;
-
-  vida += cantidad;
-  if (vida > 100) vida = 100;
-  if (vida < 0) vida = 0;
-
-  barraVida.style.width = `${vida}%`;
-  textoVida.textContent = `Vida: ${vida}`;
-
-  if (vida === 0) {
-    mostrarGameOver();
+    setTimeout(() => {
+      sonidos[sonido].pause();
+      sonidos[sonido].currentTime = 0;
+    }, 2000);
   }
 }
 
-function reproducirSonido(audio) {
-  audio.pause();
-  audio.currentTime = 0;
-  audio.play();
+function actualizarBarraVida() {
+  if (vida < 0) vida = 0;
+  if (vida > 100) vida = 100;
 
-  setTimeout(() => {
-    audio.pause();
-    audio.currentTime = 0;
-  }, 2000); // Solo 2 segundos
+  barraVida.style.width = vida + "%";
+  vidaTexto.textContent = `Vida: ${vida}`;
+
+  if (vida === 0) {
+    gameOver.style.display = 'flex';
+  }
 }
 
-botonLatigo.addEventListener("click", () => {
-  reproducirSonido(sonidoLatigo);
-  cambiarVida(-10);
-});
+function atacar(tipo) {
+  if (vida === 0) return;
 
-botonFuego.addEventListener("click", () => {
-  reproducirSonido(sonidoFuego);
-  cambiarVida(-15);
-});
+  let dano = 0;
 
-botonRayo.addEventListener("click", () => {
-  reproducirSonido(sonidoRayo);
-  cambiarVida(-20);
-});
+  switch (tipo) {
+    case 'planta':
+      dano = 10;
+      reproducirSonido('planta');
+      break;
+    case 'fuego':
+      dano = 20;
+      reproducirSonido('fuego');
+      break;
+    case 'rayo':
+      dano = 15;
+      reproducirSonido('rayo');
+      break;
+  }
 
-botonElixir.addEventListener("click", () => {
-  reproducirSonido(sonidoElixir);
-  cambiarVida(+20);
-});
-
-function mostrarGameOver() {
-  reproducirSonido(sonidoGameOver);
-  mensajeFinal.style.display = "block";
+  vida -= dano;
+  actualizarBarraVida();
 }
 
-botonReiniciar.addEventListener("click", () => {
+function curar() {
+  if (vida === 0) return;
+
+  const curacion = 20;
+  vida += curacion;
+  reproducirSonido('curar');
+  actualizarBarraVida();
+}
+
+const botonReturn = document.createElement('button');
+botonReturn.innerHTML = '<img src="img/return.png" alt="Return Game">';
+botonReturn.style.border = 'none';
+botonReturn.style.background = 'none';
+botonReturn.style.cursor = 'pointer';
+botonReturn.style.marginTop = '20px';
+
+botonReturn.onclick = () => {
   vida = 100;
-  barraVida.style.width = `${vida}%`;
-  textoVida.textContent = `Vida: ${vida}`;
-  mensajeFinal.style.display = "none";
-});
+  actualizarBarraVida();
+  gameOver.style.display = 'none';
+};
 
+gameOver.appendChild(botonReturn);
+
+actualizarBarraVida();
 function reiniciarJuego() {
     vida = 100;
     actualizarBarra();
