@@ -4,10 +4,10 @@ const vidaTexto = document.getElementById('vidaTexto');
 const gameOver = document.getElementById('game-over');
 
 const sonidos = {
-  planta: new Audio('sonidos/latigo.mp3'),
-  fuego: new Audio('sonidos/llama.mp3'),
+  latigo: new Audio('sonidos/latigo.mp3'),
+  llama: new Audio('sonidos/llama.mp3'),
   rayo: new Audio('sonidos/rayo.mp3'),
-  curar: new Audio('sonidos/elixir.mp3'),
+  elixir: new Audio('sonidos/elixir.mp3'),
 };
 
 function reproducirSonido(nombre) {
@@ -41,10 +41,10 @@ function atacar(tipo) {
 
   let dano = 0;
 
-  if (tipo === 'latigo') {
+  if (tipo === 'planta') {
     dano = 10;
     reproducirSonido('latigo');
-  } else if (tipo === 'llama') {
+  } else if (tipo === 'fuego') {
     dano = 20;
     reproducirSonido('llama');
   } else if (tipo === 'rayo') {
@@ -67,11 +67,7 @@ function curar() {
 
 const botonReturn = document.createElement('button');
 botonReturn.innerHTML = '<img src="img/return.png" alt="Return Game">';
-botonReturn.style.border = 'none';
-botonReturn.style.background = 'none';
-botonReturn.style.cursor = 'pointer';
-botonReturn.style.marginTop = '20px';
-
+botonReturn.classList.add('return-button'); // usa el estilo del CSS
 botonReturn.onclick = () => {
   vida = 100;
   actualizarBarraVida();
@@ -81,8 +77,3 @@ botonReturn.onclick = () => {
 gameOver.appendChild(botonReturn);
 
 actualizarBarraVida();
-function reiniciarJuego() {
-    vida = 100;
-    actualizarBarra();
-    document.getElementById('game-over').style.display = 'none';
-}
