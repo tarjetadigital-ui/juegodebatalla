@@ -10,15 +10,16 @@ const sonidos = {
   curar: new Audio('sonidos/elixir.mp3'),
 };
 
-function reproducirSonido(sonido) {
-  if (sonidos[sonido]) {
-    sonidos[sonido].pause();
-    sonidos[sonido].currentTime = 0;
-    sonidos[sonido].play();
+function reproducirSonido(nombre) {
+  const sonido = sonidos[nombre];
+  if (sonido) {
+    sonido.pause();
+    sonido.currentTime = 0;
+    sonido.play();
 
     setTimeout(() => {
-      sonidos[sonido].pause();
-      sonidos[sonido].currentTime = 0;
+      sonido.pause();
+      sonido.currentTime = 0;
     }, 2000);
   }
 }
@@ -40,19 +41,15 @@ function atacar(tipo) {
 
   let dano = 0;
 
-  switch (tipo) {
-    case 'planta':
-      dano = 10;
-      reproducirSonido('planta');
-      break;
-    case 'fuego':
-      dano = 20;
-      reproducirSonido('fuego');
-      break;
-    case 'rayo':
-      dano = 15;
-      reproducirSonido('rayo');
-      break;
+  if (tipo === 'planta') {
+    dano = 10;
+    reproducirSonido('planta');
+  } else if (tipo === 'fuego') {
+    dano = 20;
+    reproducirSonido('fuego');
+  } else if (tipo === 'rayo') {
+    dano = 15;
+    reproducirSonido('rayo');
   }
 
   vida -= dano;
