@@ -96,7 +96,8 @@ body, html {
     overflow: visible;
     text-overflow: unset;
 }
-  
+
+/* Estilos Game Over corregidos */
 .game-over {
     display: none;
     position: fixed;
@@ -108,18 +109,23 @@ body, html {
     justify-content: center;
     align-items: center;
     z-index: 999;
+    flex-direction: column;
 }
-  
+
 .game-over img {
     width: 80%;
     max-width: 600px;
+    margin-bottom: 20px;
 }
 
+/* Botón Return centrado */
 #btn-reiniciar {
-    margin-top: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #btn-reiniciar img {
@@ -133,6 +139,7 @@ body, html {
     transform: scale(1.05);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     .juego {
         padding: 20px;
@@ -157,6 +164,11 @@ body, html {
     .ataques p, .curar p {
         font-size: 13px;
         width: 100%;
+    }
+
+    #btn-reiniciar img {
+        width: 120px;
+        height: 120px;
     }
 }
 
@@ -184,6 +196,11 @@ body, html {
     .ataques p, .curar p {
         font-size: 12px;
         width: 100%;
+    }
+
+    #btn-reiniciar img {
+        width: 100px;
+        height: 100px;
     }
 }
   
